@@ -1,3 +1,19 @@
+In addiion to what the original author had done, added a python version of the server.
+
+*Note*: The csharp version does not work for me yet.
+
+### To use:
+
+- To run the csharp code:
+  - Download the version 1.12.1 of scrcpy and extract in the same directory.
+  - Execute the following.
+```commands
+    dotnet run
+```
+
+- To run the python version:
+  - Run the `Program.py` script then run the `adb_stuff.cmd`.
+
 CREATEAED IN RSPONSE OF DEBATE AT https://github.com/Genymobile/scrcpy/issues/1073
 
 No jumbeled classes and files liabriries just a simple program.cs file.
