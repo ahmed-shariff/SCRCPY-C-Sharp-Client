@@ -24,13 +24,13 @@ class Program
 
         ForFun2 fun2 = new ForFun2();
 
-                Thread ti = new Thread(new ThreadStart(() => fun.Fun()));
-                ti.Start();
+        Thread ti = new Thread(new ThreadStart(() => fun.Fun()));
+        ti.Start();
 
-                Thread ti2 = new Thread(new ThreadStart(() => fun2.Fun2()));
-                ti2.Start();
+        Thread ti2 = new Thread(new ThreadStart(() => fun2.Fun2()));
+        ti2.Start();
 
-    //    Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3())); ti3.Start();
+        //    Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3())); ti3.Start();
 
 
         //Console.WriteLine("Press ESC to stop");
@@ -67,14 +67,14 @@ class Program
             ps.RedirectStandardOutput = true;
             ps.RedirectStandardError = true;
 
-            process = new Process();
-            ps.FileName = "adb.exe ";
-            ps.Arguments = "connect " + "192.168.0.2";
-            process.StartInfo = ps;
-            process.Start();
-            Console.WriteLine(process.StandardOutput.ReadToEnd());
-            Console.WriteLine(process.StandardError.ReadToEnd());
-            process.Close(); process.Dispose();
+            // process = new Process();
+            // ps.FileName = "adb.exe ";
+            // ps.Arguments = "connect " + "192.168.0.2";
+            // process.StartInfo = ps;
+            // process.Start();
+            // Console.WriteLine(process.StandardOutput.ReadToEnd());
+            // Console.WriteLine(process.StandardError.ReadToEnd());
+            // process.Close(); process.Dispose();
 
             process = new Process();
             ps.FileName = "adb.exe ";
@@ -114,15 +114,15 @@ class Program
             process = new Process();
             ps.FileName = "adb.exe ";
             ps.Arguments = "shell " + "CLASSPATH=/data/local/tmp/scrcpy-server.jar " +
-         "app_process " + "/ " + "com.genymobile.scrcpy.Server " +
-        "1.12.1 " + "1024 " + "8000000 " + "0 " + "false " + "- " + "false " + "false";
+                "app_process " + "/ " + "com.genymobile.scrcpy.Server " +
+                "1.12.1 " + "1024 " + "8000000 " + "0 " + "false " + "- " + "false " + "false";
             process.StartInfo = ps; process.Start();
-            Console.`WriteLine(process.StandardError.ReadToEnd());
+            Console.WriteLine(process.StandardError.ReadToEnd());
             Console.WriteLine(process.StandardOutput.ReadToEnd());
             Console.WriteLine(process.StandardOutput.ReadToEnd());
             process.WaitForExit(); process.Close(); process.Dispose();
 
-
+            Console.WriteLine("Done>>>>>>>");
 
         }
 
@@ -191,7 +191,7 @@ class Program
                     Console.Write("Waiting for a connection Server No.2---------- ");
 
 
-                    Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3()));ti3.Start();
+                    //Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3()));ti3.Start();
 
                     
                     client2 = server2.AcceptTcpClient();
@@ -235,6 +235,7 @@ class Program
             {
 
                 Console.WriteLine("Third is Gneeal", e.ToString());
+                throw e;
 
             }
 
@@ -315,34 +316,34 @@ class Program
 
     class ForFun3{
 
-    public static void Fun3() {
+        public static void Fun3() {
 
 
-        VideoCapture capture = null;
+            VideoCapture capture = null;
 
-        capture = new VideoCapture("http://127.0.0.1:27184");
+            capture = new VideoCapture("tcp://127.0.0.1:27184");
 
-        int sleepTime = (int)Math.Round(1000/ capture.Fps);
+            int sleepTime = (int)Math.Round(1000/ capture.Fps);
 
-        using (var window = new Window("capture", WindowMode.KeepRatio))
-        {
-            Mat image = new Mat();
+            using (var window = new Window("capture", WindowMode.KeepRatio))
+            {
+                Mat image = new Mat();
                
                 while (true)
-            {
+                {
 
 
-                Found:
+                  Found:
 
 
                     capture.Read(image); 
                 
-                if (image.Empty())
-                {
-                    Console.WriteLine("Empty");
+                    if (image.Empty())
+                    {
+                        Console.WriteLine("Empty");
                         goto Found;
 
-                }
+                    }
 
                     try
                     {
@@ -353,11 +354,11 @@ class Program
                     }
                     catch (Exception e) { }
 
-                Cv2.WaitKey(sleepTime);
+                    Cv2.WaitKey(sleepTime);
 
+                }
             }
         }
-    }
 
-}
+    }
 }
