@@ -40,5 +40,5 @@ def client():
     
 
 if __name__ == "__main__":
-    main()
-    # client()
+    # main()
+    client()

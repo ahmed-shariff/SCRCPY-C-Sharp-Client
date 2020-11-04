@@ -27,10 +27,10 @@ class Program
         Thread ti = new Thread(new ThreadStart(() => fun.Fun()));
         ti.Start();
 
-        Thread ti2 = new Thread(new ThreadStart(() => fun2.Fun2()));
-        ti2.Start();
+        // Thread ti2 = new Thread(new ThreadStart(() => fun2.Fun2()));
+        // ti2.Start();
 
-        //    Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3())); ti3.Start();
+        // Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3())); ti3.Start();
 
 
         //Console.WriteLine("Press ESC to stop");
@@ -153,7 +153,7 @@ class Program
 
             byte[] bb2 = new byte[64];
 
-            byte[] bb3 = new byte[4];
+            byte[] bb3 = new byte[2];
 
             //byte[] bb5 = new byte[40];
 
@@ -185,13 +185,16 @@ class Program
 
 
                     bf.Read(bb3, 0, bb3.Length);
-                    Console.WriteLine(System.Text.Encoding.ASCII.GetString(bb3, 0, bb3.Length));
+                    Console.WriteLine(bb2.ToString());
+
+                    bf.Read(bb3, 0, bb3.Length);
+                    Console.WriteLine(BitConverter.ToInt32(bb2, 0));
 
                     
                     Console.Write("Waiting for a connection Server No.2---------- ");
 
 
-                    //Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3()));ti3.Start();
+                    Thread ti3 = new Thread(new ThreadStart(() => ForFun3.Fun3()));ti3.Start();
 
                     
                     client2 = server2.AcceptTcpClient();
